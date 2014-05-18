@@ -24,7 +24,7 @@ import android.util.Log;
 /**
  * This class invokes SCanvas called from JavaScript.
  */
-public class SCanvas extends CordovaPlugin {
+public class SpenPlugin extends CordovaPlugin {
 	  
 	private static final String BACKGROUND_IMAGE_URL = "backgroundImageUrl";
 	private static final String SAVEONLYFOREGROUND_IMAGE = "saveOnlyForegroundImage";
