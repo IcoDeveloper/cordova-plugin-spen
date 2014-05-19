@@ -1,4 +1,4 @@
-cordova-plugin-spen
+Cordova plugin - S Pen event dispatcher
 ---------------------------
 
 This plugin capture s pen events, and dispatch them to javascript via events.
@@ -30,7 +30,7 @@ Here are a few tips to help developpement of this plugin.
 ### View emulator logs related to the plugin
 
 ```
-adb logcat -s "S PEN"
+adb logcat -s "Spen"
 ```
 
 ## Todos
