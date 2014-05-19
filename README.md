@@ -1,7 +1,11 @@
 cordova-plugin-spen
 ---------------------------
 
-This plugin capture pen events, and dispatch them to 
+This plugin capture s pen events, and dispatch them to javascript via events.
+
+This is a huge rewrite based on [Breezeemr's work](https://github.com/Breezeemr/cordova-plugin-spen).
+
+Currently using S Pen SDK 2.3 (more info [here](http://developer.samsung.com/s-pen-sdk)).
 
 ## Installation and usage
 
@@ -28,3 +32,8 @@ Here are a few tips to help developpement of this plugin.
 ```
 adb logcat -s "S PEN"
 ```
+
+## Todos
+
+- Add relative position values (relX and relY), which will be floating numbers between 0 and 1.
+- Add hover listener using `setSPenHoverListener()`, using [this approach](https://github.com/SamsungDeveloper/PhotoDesk/blob/master/src/com/samsung/photodesk/editor/ImageEditorActivity.java).
