@@ -17,7 +17,7 @@ This should looks like :
 cordova plugin add https://github.com/jmcouillard/cordova-plugin-spen.git
 ```
 
-From the javascript, initialize the plugin using the following command L
+From the javascript, initialize the plugin using the following command :
 
 ```
 window.SpenPlugin.addEvents(successCallback, failCallback);
@@ -35,5 +35,6 @@ adb logcat -s "Spen"
 
 ## Todos
 
+- Grab and send pressure
 - Add relative position values (relX and relY), which will be floating numbers between 0 and 1.
 - Add hover listener using `setSPenHoverListener()`, using [this approach](https://github.com/SamsungDeveloper/PhotoDesk/blob/master/src/com/samsung/photodesk/editor/ImageEditorActivity.java).
