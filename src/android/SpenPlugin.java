@@ -15,8 +15,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebSettings;
 
-import com.jmcouillard.SPenEventGeneral;
-
 import com.samsung.spen.lib.input.SPenEventLibrary;
 import com.samsung.spensdk.applistener.SPenDetachmentListener;
 import com.samsung.spensdk.applistener.SPenHoverListener;
