@@ -119,8 +119,27 @@ public class SpenPlugin extends CordovaPlugin {
 					public void onTouchButtonUp(View view, MotionEvent e) {
 						fireEvent("onTouchButtonUp", createData(e));
 						return ;
-					}			
+					}	
 				} );
+
+				mSPenEventLibrary.setSPenHoverListener(webView, new SPenHoverListener()
+				{
+					@Override
+					public boolean onHover(View view, MotionEvent e) {
+						fireEvent("onHover", createData(e));
+						return true;
+					}
+					@Override
+					public void onHoverButtonDown(View view, MotionEvent e) {
+						fireEvent("onHoverButtonDown", createData(e));
+						return ;
+					}
+					@Override
+					public void onHoverButtonUp(View view, MotionEvent e) {
+						fireEvent("onHoverButtonUp", createData(e));
+						return ;
+					}
+				}  );
 
 				Log.d("Spen", "Spen events were correctcly added.");
 			}
@@ -145,6 +164,7 @@ public class SpenPlugin extends CordovaPlugin {
 		try {
 			data.put("x", e.getX());
 			data.put("y", e.getY());
+			data.put("pressure", e.getPressure());
 		} catch (JSONException ex) {
 			Log.d("Spen", "Exception setting type on event data");
 		}
