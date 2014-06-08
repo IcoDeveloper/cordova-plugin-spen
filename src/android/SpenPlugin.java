@@ -98,17 +98,17 @@ public class SpenPlugin extends CordovaPlugin {
 					@Override
 					public boolean onTouchFinger(View view, MotionEvent e) {
 						fireEvent("onTouchFinger", createData(e));
-						return true;
+						return false;
 					}
 					@Override
 					public boolean onTouchPen(View view, MotionEvent e) {
 						fireEvent("onTouchPen", createData(e));
-						return true;
+						return false;
 					}
 					@Override
 					public boolean onTouchPenEraser(View view, MotionEvent e) {
 						fireEvent("onTouchPenEraser", createData(e));
-						return true;
+						return false;
 					}		
 					@Override
 					public void onTouchButtonDown(View view, MotionEvent e) {
