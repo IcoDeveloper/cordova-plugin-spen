@@ -5,7 +5,9 @@ This plugin capture s pen events, and dispatch them to javascript via events.
 
 This is a huge rewrite based on [Breezeemr's work](https://github.com/Breezeemr/cordova-plugin-spen).
 
-Currently using S Pen SDK 2.3 (more info [here](http://developer.samsung.com/s-pen-sdk)).
+Tested with the last Samsung Galaxy Note 10.1 (2014 Edition)
+
+This plugin grabs coordinates, pressure and time of pen events.
 
 ## Installation and usage
 
@@ -14,27 +16,18 @@ To install this plugin, follow the [Command-line Interface Guide](http://cordova
 This should looks like :
 
 ```
-cordova plugin add https://github.com/jmcouillard/cordova-plugin-spen.git
+cordova plugin add https://github.com/danturi/cordova-plugin-spen.git
 ```
 
 From the javascript, initialize the plugin using the following command :
 
 ```
-window.SpenPlugin.addEvents(successCallback, failCallback);
+SpenPlugin.addEvents();
 ```
-
-## Development
-
-Here are a few tips to help developpement of this plugin.
-
-### View emulator logs related to the plugin
+Add the event listeners using the following commands:
 
 ```
-adb logcat -s "Spen"
+document.addEventListener("ACTION_DOWN", function(event) {});
+document.addEventListener("ACTION_MOVE", function(event) {});
+document.addEventListener("ACTION_UP", function(event) {});
 ```
-
-## Todos
-
-- Grab and send pressure
-- Add relative position values (relX and relY), which will be floating numbers between 0 and 1.
-- Add hover listener using `setSPenHoverListener()`, using [this approach](https://github.com/SamsungDeveloper/PhotoDesk/blob/master/src/com/samsung/photodesk/editor/ImageEditorActivity.java).

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-xmlns:rim="http://www.blackberry.com/ns/widgets"
 xmlns:android="http://schemas.android.com/apk/res/android"
            id="org.apache.cordova.plugin.SpenPlugin"
-      version="0.3.2">
+      version="0.1.0">
 
     <name>SpenPlugin</name>
-    <description>Canvas for Samsung SPen</description>
-    <license>Apache 2.0</license>
-    <keywords>cordova,canvas</keywords>
+    <description>Samsung Pen-input cordova plugin. Dispatch data through javascript events.</description>
+	<author>Venturi Davide</author>
+    <license>Apache 2.0 License</license>
+    <keywords>cordova,pen,touch,input,samsung</keywords>
 
     <!-- android -->
     <platform name="android">
@@ -23,22 +23,6 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 	            <param name="android-package" value="org.apache.cordova.plugin.SpenPlugin"/>
 	        </feature>
         </config-file>
-
-        <config-file target="AndroidManifest.xml" parent="/manifest/application">
-            <activity android:name="com.jmcouillard.SPenEventGeneral" android:label="@string/app_name">
-                <intent-filter>
-                    <action android:name="com.jmcouillard.SPenEventGeneral.EVENTS" />  
-                    <category android:name="android.intent.category.DEFAULT" />  
-                </intent-filter>
-            </activity>
-        </config-file>
-
         <source-file src="src/android/SpenPlugin.java" target-dir="src/org/apache/cordova/plugin" />
-        <source-file src="libs/libspen23.jar" target-dir="libs" framework="true"/>
-
     </platform>
-
-
-
-
 </plugin>

@@ -1,25 +1,8 @@
-// Javascript file imported automatically by cordova module loader (when isntalled correctly)
-
-var SpenPlugin = function() {
-    //alert("Init SCanevas");
+var SpenPlugin = {
+	addEvents : function() {
+		cordova.exec(function(param) {
+		}, function(error) {
+			alert("Unable to initialize pen support: " + error);
+		}, "SpenPlugin", "penEvents", []);
+	}
 };
-
-SpenPlugin.prototype.addEvents = function(successCallback, errorCallback) {
-
-    if (errorCallback == null) { errorCallback = function() {}}
-   
-    if (typeof errorCallback != "function")  {
-        console.log("SpenPlugin.showCanvas failure: failure parameter not a function");
-        return
-    }
-    if (successCallback == null) { successCallback = function() {}}
-    
-    if (typeof successCallback != "function") {
-        console.log("SpenPlugin.showCanvas failure: success callback parameter must be a function");
-        return
-    }
-    
-    return cordova.exec(successCallback, errorCallback, 'SpenPlugin', 'addEvents', []);
-};
-
-module.exports = new SpenPlugin();
