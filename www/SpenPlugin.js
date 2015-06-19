@@ -1,5 +1,5 @@
 var SpenPlugin = function() {
-	cordova.exec.setNativeToJsBridgeMode(cordova.exec.nativeToJsModes.PRIVATE_API);
+	cordova.exec.setNativeToJsBridgeMode(cordova.exec.nativeToJsModes.ONLINE_EVENT);
 };
 
 SpenPlugin.prototype.addEvents = function() {
