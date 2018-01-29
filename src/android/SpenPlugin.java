@@ -11,19 +11,28 @@ import android.annotation.SuppressLint;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-
+import android.view.ViewGroup;
+import android.os.Build;
 
 @SuppressLint("ClickableViewAccessibility")
 public class SpenPlugin extends CordovaPlugin implements View.OnTouchListener{
 
 	private int pointerId = 0;
 	public CallbackContext callback;
-	public View frame;
+	public View frame;	
+	private ViewGroup viewGroup;
 	
+	// lazy init and caching
+	private ViewGroup getViewGroup() {
+		if (viewGroup == null) {
+			viewGroup = (ViewGroup) ((ViewGroup) cordova.getActivity().findViewById(android.R.id.content)).getChildAt(0);
+		}
+		return viewGroup;
+	}
 	
 	public void initialize(CordovaInterface cordova, CordovaWebView webView) {
 		frame = (View) cordova.getActivity().findViewById(android.R.id.content);
-		cordova.getActivity();
+		cordova.getActivity();		
 		super.initialize(cordova, webView);
 	}
 
@@ -32,7 +41,8 @@ public class SpenPlugin extends CordovaPlugin implements View.OnTouchListener{
 		this.callback = callbackContext;
 
 		if (action.equals("penEvents")) {
-			webView.setOnTouchListener(this);
+			getViewGroup().setOnTouchListener(this);
+			//webView.setOnTouchListener(this);
 		} else {
 			callbackContext.error("Wrong action name in plugin");
 			return false;
@@ -49,8 +59,9 @@ public class SpenPlugin extends CordovaPlugin implements View.OnTouchListener{
 			data.put("x", e.getX(pointerId));
 			data.put("y", e.getY(pointerId));
 			data.put("pressure", e.getPressure(pointerId));
-			data.put("time", e.getEventTime());
-			
+			data.put("time", e.getEventTime());			
+			data.put("tilt", e.getAxisValue(MotionEvent.AXIS_TILT, pointerId));
+			data.put("orientation", e.getOrientation(pointerId));
 		} catch (JSONException ex) {
 			Log.d("Spen", "Exception setting event data");
 		}
@@ -76,7 +87,7 @@ public class SpenPlugin extends CordovaPlugin implements View.OnTouchListener{
 			}
 
 			// Define javascript code and target webview
-			final String js = "javascript:try{cordova.fireDocumentEvent('"
+			final String js = "try{cordova.fireDocumentEvent('"
 					+ type
 					+ "'"
 					+ (data != null ? "," + data : "")
@@ -84,10 +95,13 @@ public class SpenPlugin extends CordovaPlugin implements View.OnTouchListener{
 			//final CordovaWebView webview = webView;
 
 			// Send javascript to target
-			webView.post(new Runnable() {
+			//webView.post(new Runnable() {
+			getViewGroup().post(new Runnable() {
 				@Override
 				public void run() {
-					webView.loadUrl(js);
+					//					webView.loadUrl(js);
+					webView.getEngine().loadUrl("javascript:" + js, true);					
+					//getViewGroup().loadUrl(js);
 				}
 			});
 		}
@@ -118,7 +132,8 @@ public class SpenPlugin extends CordovaPlugin implements View.OnTouchListener{
            
         }
 
-        return webView.onTouchEvent(e);
+        //return webView.onTouchEvent(e);
+		return getViewGroup().onTouchEvent(e);
 	}
 
 }
